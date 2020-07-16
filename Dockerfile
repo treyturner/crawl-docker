@@ -1,11 +1,11 @@
-FROM python:2
+FROM python:3
 MAINTAINER dididi <dfdgsdfg@gmail.com>
 
 ENV HOME /root
 ENV LC_ALL C.UTF-8
 
 ARG CRAWL_GIT_REPO=https://github.com/crawl/crawl
-ARG CRAWL_VERSION=master
+ARG CRAWL_GIT_TAG=0.25.0
 
 RUN apt-get update && \
     apt-get -y install build-essential \
@@ -27,14 +27,14 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN pip install tornado==3.2.2
+RUN pip install tornado==6.0.4 pyyaml
 
 WORKDIR /root
 RUN git clone ${CRAWL_GIT_REPO} --depth 1
  
 WORKDIR /root/crawl
-RUN git fetch origin ${CRAWL_VERSION}
-RUN git checkout ${CRAWL_VERSION}
+RUN git fetch origin tag ${CRAWL_GIT_TAG} --no-tags
+RUN git checkout tags/${CRAWL_GIT_TAG} -b ${CRAWL_GIT_TAG}
 RUN git submodule update --init
 
 WORKDIR /root/crawl/crawl-ref/source
