@@ -1,52 +1,29 @@
-[DCSS][DCSS] Web-tile Standalon Server Docker
+[DCSS][DCSS] WebTiles Docker
 =============================================
-This is [Dungeon Crawl Stone Soup][DCSS] web-tile standalone server. If you try to make offical recode server please read this and support from IRC.
-
-- [Setting up dgamelaunch and webtiles][1]
-- [Freenode ##Crawl-dev chnnel][Crawl-dev]
-
+This is a [Dungeon Crawl Stone Soup][DCSS] standalone server.
 
 Install
 -------
-Build from the dockerfile
+Build from the [Dockerfile](Dockerfile):
+
 ```
-$ git clone dfdgsdfg/DCSS-webtile-standalone-docker
-$ cd DCSS-webtile-standalone-docker
-$ sudo docker build --build-arg CRAWL_GIT_REPO=https://github.com/Hellmonk/hellcrawl --build-arg CRAWL_VERSION=0.21.1 -t crawl .
+$ git clone https://github.com/treyturner/crawl-docker.git
+$ cd crawl-docker
+$ docker build --build-arg CRAWL_GIT_TAG=0.25.0 -t crawl .
 ```
 
-If no CRAWL_GIT_REPO is specified, it will default to 'https://github.com/crawl/crawl'.
-If no CRAWL_VERSION is specified, it will default to 'master'.
+You can also provide a `--build-arg` of `CRAWL_GIT_REPO` if you wish, ie `https://github.com/Hellmonk/hellcrawl`.
+If no CRAWL_GIT_TAG is specified, it will default to `0.25.0`, the latest release as of 7/16/20.
 
 Usage
 -----
-To spawn a new instance of DCSS on port 80. The -p 80:80 maps the internal docker port 80 to the outside port 80 of the host machine.
+A `docker-compose.yml` is included. Make sure you have `docker-compose` installed, then all you should need to do after the build is:
 
 ```
-$ sudo docker run --name crawl -d -p 80:80 -v /Users/me/var/docker/crawl-data/:/data crawl
+$ docker-compose up -d
 ```
 
-Start your newly created docker.
-
-```
-$ sudo docker start crawl
-```
-
-After starting the DCSS check to see if it started and the port mapping is correct. This will also report the port mapping between the docker container and the host machine.
-
-```
-$ sudo docker ps
-0.0.0.0:80 -> 80/tcp crawl
-```
-
-You can the visit the following URL in a browser on your host machine to get started:
-
-```
-http://127.0.0.1
-```
-
-
+This will start the server on port 80 and store your data in a persistent [Docker volume](https://docs.docker.com/storage/volumes/).
 
 [DCSS]:http://crawl.develz.org/
-[1]:https://crawl.develz.org/wiki/doku.php?id=setting_up_dgamelaunch_and_webtiles
 [Crawl-dev]:http://webchat.freenode.net/?channels=%23%23crawl-dev
