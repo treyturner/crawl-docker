@@ -13,7 +13,8 @@ $ docker build --build-arg CRAWL_GIT_TAG=0.25.0 -t crawl .
 ```
 
 You can also provide a `--build-arg` of `CRAWL_GIT_REPO` if you wish, ie `https://github.com/Hellmonk/hellcrawl`.
-If no CRAWL_GIT_TAG is specified, it will default to `0.25.0`, the latest release as of 7/16/20.
+
+If no `CRAWL_GIT_TAG` is specified, it will default to `0.25.0`, the latest release as of 7/16/20.
 
 Usage
 -----
