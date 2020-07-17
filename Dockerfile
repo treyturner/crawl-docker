@@ -40,13 +40,18 @@ RUN make WEBTILES=y USE_DGAMELAUNCH=y
 WORKDIR /root/crawl/crawl-ref/source/webserver
 RUN sed -i '/bind_port/ s|8080|80|' config.py && \
     sed -i '/password_db/ s|\./webserver|/data|' config.py && \
-    sed -i '/filename/ s|#||' config.py && \
+    sed -i '/filename/ s|# ||' config.py && \
     sed -i '/filename/ s|webtiles.log|/data/webtiles.log|' config.py && \
     sed -i "/\"dcss-web-trunk\"/ s|trunk|${CRAWL_GIT_TAG}|" config.py && \
     sed -i "/\"Play trunk\"/ s|trunk|${CRAWL_GIT_TAG}|" config.py && \
-    sed -i '/ dir_path/ s|#||' config.py && \
+    sed -i '/ dir_path/ s|# ||' config.py && \
     sed -i '/ dir_path/ s|\.|/data|' config.py && \
     sed -i '/crypt_algorithm/ s|broken|6|' config.py
+
+WORKDIR /root/crawl/crawl-ref/source/webserver/games.d
+RUN sed -i '/# dir_path/ s|# ||' base.yaml && \
+    sed -i '/dir_path: \./ s|\.|/data|' base.yaml && \
+    sed -i '/morgue_url/ s|morgue_url|# morgue_url: None|' base.yaml
 
 WORKDIR /root/crawl/crawl-ref/source
 CMD python webserver/server.py
