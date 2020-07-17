@@ -1,5 +1,4 @@
 FROM python:3
-MAINTAINER dididi <dfdgsdfg@gmail.com>
 
 ENV HOME /root
 ENV LC_ALL C.UTF-8
@@ -25,33 +24,33 @@ RUN apt-get update && \
                        ccache \
                        binutils-gold && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-RUN pip install tornado==6.0.4 pyyaml
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    pip install tornado==6.0.4 pyyaml
 
 WORKDIR /root
-RUN git clone ${CRAWL_GIT_REPO} --depth 1
- 
-WORKDIR /root/crawl
-RUN git fetch origin tag ${CRAWL_GIT_TAG} --no-tags
-RUN git checkout tags/${CRAWL_GIT_TAG} -b ${CRAWL_GIT_TAG}
-RUN git submodule update --init
+RUN git clone ${CRAWL_GIT_REPO} --depth 1 crawl && \
+    cd crawl && \
+    git fetch origin tag ${CRAWL_GIT_TAG} --no-tags && \
+    git checkout tags/${CRAWL_GIT_TAG} -b ${CRAWL_GIT_TAG} && \
+    git submodule update --init
 
 WORKDIR /root/crawl/crawl-ref/source
 RUN make WEBTILES=y USE_DGAMELAUNCH=y
-RUN mkdir rcs
 
 WORKDIR /root/crawl/crawl-ref/source/webserver
-RUN sed -i '/bind_port/ s|8080|80|' config.py
-RUN sed -i '/password_db/ s|./webserver/passwd.db3|/data/passwd.db3|' config.py
-RUN sed -i '/filename/ s|#||' config.py
-RUN sed -i '/filename/ s|webtiles.log|/data/webtiles.log|' config.py
-# RUN sed -i '/crypt_algorithm/ s|broken|6|' config.py
-# RUN sed -i '/crypt_salt_length/ s|16|16|' config.py
+RUN sed -i '/bind_port/ s|8080|80|' config.py && \
+    sed -i '/password_db/ s|\./webserver|/data|' config.py && \
+    sed -i '/filename/ s|#||' config.py && \
+    sed -i '/filename/ s|webtiles.log|/data/webtiles.log|' config.py && \
+    sed -i "/\"dcss-web-trunk\"/ s|trunk|${CRAWL_GIT_TAG}|" config.py && \
+    sed -i "/\"Play trunk\"/ s|trunk|${CRAWL_GIT_TAG}|" config.py && \
+    sed -i '/ dir_path/ s|#||' config.py && \
+    sed -i '/ dir_path/ s|\.|/data|' config.py && \
+    sed -i '/crypt_algorithm/ s|broken|6|' config.py
 
 WORKDIR /root/crawl/crawl-ref/source
 CMD python webserver/server.py
 
 VOLUME ["/data"]
-EXPOSE 80 443
+EXPOSE 80
 
