@@ -11,7 +11,7 @@ This is based off of [dfdgsdfg/crawl-docker](https://github.com/dfdgsdfg/crawl-d
 - Update to tornado 6.0.4
 - Build from Git tags instead of branches
 - Reduce number of layers in the build
-- Store saves and morgues in a persistent docker volume
+- Store saves and morgues in a persistent [Docker volume]
   - Applies to main game as well as seed/tutorial/sprint games
 - Add a `docker-compose.yml` for easy management
 
@@ -37,9 +37,9 @@ Make sure you have `docker-compose` installed, then all you should need to do af
 $ docker-compose up -d
 ```
 
-This will start the server on port 80 and store your data in a persistent [Docker volume](https://docs.docker.com/storage/volumes/).
+This will start the server on port 80 and store your data in a persistent [Docker volume].
 
-You can stop the server with
+You can stop the server with:
 
 ```
 $ docker-compose down
@@ -47,3 +47,4 @@ $ docker-compose down
 
 [DCSS]:http://crawl.develz.org/
 [Crawl-dev]:http://webchat.freenode.net/?channels=%23%23crawl-dev
+[Docker volume]:https://docs.docker.com/storage/volumes/
