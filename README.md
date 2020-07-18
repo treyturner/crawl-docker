@@ -31,7 +31,7 @@ If no `CRAWL_GIT_TAG` is specified, it will default to `0.25.0`, the latest rele
 
 Usage
 -----
-A `docker-compose.yml` is included. Make sure you have `docker-compose` installed, then all you should need to do after the build is:
+Make sure you have `docker-compose` installed, then all you should need to do after the build is:
 
 ```
 $ docker-compose up -d
