@@ -2,7 +2,7 @@
 =============================================
 This is a [Dungeon Crawl Stone Soup][DCSS] standalone server.
 
-How is this different from dfdgsdfg's image?
+How is this different from [dfdgsdfg](https://github.com/dfdgsdfg)'s image?
 --------------------------------------------
 This is based off of [dfdgsdfg/crawl-docker](https://github.com/dfdgsdfg/crawl-docker). I made a few changes:
 
