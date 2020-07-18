@@ -13,7 +13,7 @@ This is based off of [dfdgsdfg/crawl-docker](https://github.com/dfdgsdfg/crawl-d
 - Reduce number of layers in the build
 - Store saves and morgues in a persistent [Docker volume]
   - Applies to main game as well as seed/tutorial/sprint games
-- Add a `docker-compose.yml` for easy management
+- [Added `docker-compose.yml`](docker-compose.yml) for easy management
 
 Install
 -------
