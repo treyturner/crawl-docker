@@ -37,7 +37,7 @@ Make sure you have [`docker-compose` installed](https://docs.docker.com/compose/
 $ docker-compose up -d
 ```
 
-This will start the server on port 80 and store your data in a persistent [Docker volume].
+This will start the server on port 80.
 
 You can stop the server with:
 
