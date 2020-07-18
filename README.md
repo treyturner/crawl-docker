@@ -31,7 +31,7 @@ If no `CRAWL_GIT_TAG` is specified, it will default to `0.25.0`, the latest rele
 
 Usage
 -----
-Make sure you have [`docker-compose` installed](https://docs.docker.com/compose/install/), then all you should need to do after the build is:
+Make sure you have [docker-compose], then all you should need to do after the build is:
 
 ```
 $ docker-compose up -d
@@ -45,7 +45,8 @@ You can stop the server with:
 $ docker-compose down
 ```
 
-[DCSS]:http://crawl.develz.org/
+[DCSS]:http://crawl.develz.org
 [dfdgsdfg]:https://github.com/dfdgsdfg
 [dfdgsdfg/crawl-docker]:https://github.com/dfdgsdfg/crawl-docker
-[Docker volume]:https://docs.docker.com/storage/volumes/
+[Docker volume]:https://docs.docker.com/storage/volumes
+[docker-compose]:https://docs.docker.com/compose/install
