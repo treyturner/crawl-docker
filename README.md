@@ -2,18 +2,18 @@
 =============================================
 This is a [Dungeon Crawl Stone Soup][DCSS] standalone server.
 
-How is this different from [dfdgsdfg](https://github.com/dfdgsdfg)'s image?
+How is this different from [dfdgsdfg]'s image?
 --------------------------------------------
-This is based off of [dfdgsdfg/crawl-docker](https://github.com/dfdgsdfg/crawl-docker). I made a few changes:
+This is based off of [dfdgsdfg/crawl-docker]. I made a few changes:
 
-- Add pyyaml (fixes build breakage)
+- Add pyyaml dependency (fixes build breakage)
 - Update to Python 3 (to fix pyyaml not being detected)
 - Update to tornado 6.0.4
 - Build from Git tags instead of branches
 - Reduce number of layers in the build
 - Store saves and morgues in a persistent [Docker volume]
   - Applies to main game as well as seed/tutorial/sprint games
-- [Added `docker-compose.yml`](docker-compose.yml) for easy management
+- [Add `docker-compose.yml`](docker-compose.yml) for easy management
 
 Install
 -------
@@ -46,5 +46,6 @@ $ docker-compose down
 ```
 
 [DCSS]:http://crawl.develz.org/
-[Crawl-dev]:http://webchat.freenode.net/?channels=%23%23crawl-dev
+[dfdgsdfg]:https://github.com/dfdgsdfg
+[dfdgsdfg/crawl-docker]:https://github.com/dfdgsdfg/crawl-docker
 [Docker volume]:https://docs.docker.com/storage/volumes/
